@@ -18,7 +18,7 @@ const BattlePage: NextPage = () => {
   const [isEnded, updateIsEnded] = useState(false)
 
   // SETUP AND START BATTLE ======================
-  const { unityProvider, sendMessage, isLoaded, loadingProgression, addEventListener, removeEventListener } = useUnityContext({
+  const { unityProvider, sendMessage, requestFullscreen, isLoaded, loadingProgression, addEventListener, removeEventListener } = useUnityContext({
       loaderUrl: "unityBuild/FinBattles_0.1a_WebGL.loader.js",
       dataUrl: "unityBuild/FinBattles_0.1a_WebGL.data",
       frameworkUrl: "unityBuild/FinBattles_0.1a_WebGL.framework.js",
@@ -56,6 +56,7 @@ const BattlePage: NextPage = () => {
     if (isLoaded) {
       //@ts-ignore
       sendMessage('JavascriptHook', 'hide_all')
+      // requestFullscreen(true)
     }
   }, [isLoaded])
 
@@ -157,7 +158,7 @@ const BattlePage: NextPage = () => {
   }, 1000)
 
     return (
-      <div className="battleCanvas" style={{ position: "relative" }}>
+      <div className="battleCanvas" style={{ position: "relative", width:'960px', height: '600px' }}>
         <div style={{ width: "100vw", height: "100vh", display: "flex", position: "absolute"}}>
           <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}>
             Loading...
@@ -168,6 +169,7 @@ const BattlePage: NextPage = () => {
           <div style={{ background: acceptorFini ? acceptorFini.background : "gray", flex: 1 }}/>
         </div>
         <Unity devicePixelRatio={1.5} unityProvider={unityProvider} style={{ visibility: isStarted || isEnded ? "visible" : "hidden", position: "absolute" }} />
+        {/* <Unity devicePixelRatio={1.5} unityProvider={unityProvider} style={{ position: "absolute" }} /> */}
       </div>
     );
 }
