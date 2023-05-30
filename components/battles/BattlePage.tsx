@@ -163,7 +163,6 @@ const BattlePage: NextPage = () => {
     const startDate = Date.parse(battle.startTime)
     //@ts-ignore
     const endDate = ((startDate / 1000) + battle.duration) * 1000
-    console.log(endDate - Date.now())
     return endDate - Date.now() <= 0
   }
 
