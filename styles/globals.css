@@ -126,6 +126,6 @@ span.live-icon:before{
 }
 
 .battleCanvas canvas {
-  height: 600px;
-  width: 960px;
+  height: 100vh;
+  width: 100vw;
 }

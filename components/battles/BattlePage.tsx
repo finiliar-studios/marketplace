@@ -16,6 +16,7 @@ const BattlePage: NextPage = () => {
   const [acceptorFini, updateAcceptorFini] = useState()
   const [winningState, updateWinningState] = useState("")
   const [isEnded, updateIsEnded] = useState(false)
+  const [appReady, updateAppReady] = useState(false)
 
   // SETUP AND START BATTLE ======================
   const { unityProvider, sendMessage, requestFullscreen, isLoaded, loadingProgression, addEventListener, removeEventListener } = useUnityContext({
@@ -26,6 +27,7 @@ const BattlePage: NextPage = () => {
       streamingAssetsUrl: "unityBuild/StreamingAssets"
   });
 
+  // FETCH AND UPDATE BATTLE DATA ================
   const fetchBattle = async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const battleId = urlParams.get('id');
@@ -52,6 +54,7 @@ const BattlePage: NextPage = () => {
       .catch(console.error);
   }, [])
 
+  // HIDE BUTTONS AND UI ==========================
   useEffect(() => {
     if (isLoaded) {
       //@ts-ignore
@@ -60,34 +63,54 @@ const BattlePage: NextPage = () => {
     }
   }, [isLoaded])
 
+  // SET BATTLE IDS (MUST HAVE appReady/"app_ready" EVENT FIRED) ============
+  // NOTE: This triggers the "characters_spawned" event when it's finished
   useEffect(() => {
-    if (isLoaded && battle && !isStarted && !isEnded) {
+    if (isLoaded && battle && !isStarted && !isEnded && appReady) {
       //@ts-ignore
       sendMessage('JavascriptHook', 'set_battle_ids', `${battle.creatorFiniId}, ${battle.acceptorFiniId}`)
     }
-  }, [isLoaded, battle, isStarted])
+  }, [isLoaded, battle, isStarted, appReady])
 
+  // CONSOLE LOG APP DATA ===================
   //@ts-ignore
-  const handleCharactersLoaded = useCallback(async () => {
-    // Once the characters are loaded either start the battle or call the ending sequence straight away
-    let battle = await fetchBattle()
+  const log = (data) => {
+    console.log("LOG:", data)
+  }
 
-    const shouldBeEnded = computeIsEnded(battle)
-    if (!isStarted && !shouldBeEnded) {
-      //@ts-ignore
-      sendMessage('JavascriptHook', 'start_opening_sequence')
-      setTimeout(() => {
+  useEffect(() => {
+    addEventListener("log_event", log);
+    return () => {
+      removeEventListener("log_event", log);
+    };
+  }, [addEventListener, removeEventListener]);
+
+  // HANDLE UNITY APP EVENTS (BOTH app_ready and characters_spawned)
+  //@ts-ignore
+  const handleCharactersLoaded = useCallback(async (eventName) => {
+    
+    // Track when the app is ready
+    if (eventName === "app_ready") {
+      updateAppReady(true)
+    }
+
+    if (eventName === "characters_spawned") {
+      // Once the characters are loaded either start the battle or call the ending sequence straight away
+      let battle = await fetchBattle()
+
+      const shouldBeEnded = computeIsEnded(battle)
+      if (!isStarted && !shouldBeEnded) {
+        //@ts-ignore
+        sendMessage('JavascriptHook', 'start_opening_sequence')
         updateIsStarted(true)
-      }, 2000)
-    } else {
-      //@ts-ignore
-      sendMessage('JavascriptHook', 'start_ending_sequence', battle.winner == battle.creator ? 'right' : 'left')
-      setTimeout(() => {
+      } else {
+        //@ts-ignore
+        sendMessage('JavascriptHook', 'start_ending_sequence', battle.winner == battle.creator ? 'right' : 'left')
         updateIsEnded(true)
-      }, 2000)
+      }
     }
   }, [sendMessage]);
-  
+
   useEffect(() => {
     addEventListener("dispatch_event", handleCharactersLoaded);
     return () => {
@@ -95,7 +118,8 @@ const BattlePage: NextPage = () => {
     };
   }, [addEventListener, removeEventListener, handleCharactersLoaded]);
 
-  // UPDATE BATTLE ======================
+
+  // UPDATE BATTLE TO DISPLAY WINNER ======================
   const calculateWinner = async () => {
     await fetchBattle()
 
@@ -158,7 +182,7 @@ const BattlePage: NextPage = () => {
   }, 1000)
 
     return (
-      <div className="battleCanvas" style={{ position: "relative", width:'960px', height: '600px' }}>
+      <div className="battleCanvas" style={{ position: "relative" }}>
         <div style={{ width: "100vw", height: "100vh", display: "flex", position: "absolute"}}>
           <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}>
             Loading...
