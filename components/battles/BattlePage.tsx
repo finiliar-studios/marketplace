@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   NextPage
 } from 'next'
@@ -57,9 +58,7 @@ const BattlePage: NextPage = () => {
   // HIDE BUTTONS AND UI ==========================
   useEffect(() => {
     if (isLoaded) {
-      //@ts-ignore
       sendMessage('JavascriptHook', 'hide_all')
-      // requestFullscreen(true)
     }
   }, [isLoaded])
 
@@ -67,13 +66,11 @@ const BattlePage: NextPage = () => {
   // NOTE: This triggers the "characters_spawned" event when it's finished
   useEffect(() => {
     if (isLoaded && battle && !isStarted && !isEnded && appReady) {
-      //@ts-ignore
       sendMessage('JavascriptHook', 'set_battle_ids', `${battle.creatorFiniId}, ${battle.acceptorFiniId}`)
     }
   }, [isLoaded, battle, isStarted, appReady])
 
   // CONSOLE LOG APP DATA ===================
-  //@ts-ignore
   const log = (data) => {
     console.log("LOG:", data)
   }
@@ -86,7 +83,6 @@ const BattlePage: NextPage = () => {
   }, [addEventListener, removeEventListener]);
 
   // HANDLE UNITY APP EVENTS (BOTH app_ready and characters_spawned)
-  //@ts-ignore
   const handleCharactersLoaded = useCallback(async (eventName) => {
     
     // Track when the app is ready
@@ -100,11 +96,9 @@ const BattlePage: NextPage = () => {
 
       const shouldBeEnded = computeIsEnded(battle)
       if (!isStarted && !shouldBeEnded) {
-        //@ts-ignore
         sendMessage('JavascriptHook', 'start_opening_sequence')
         updateIsStarted(true)
       } else {
-        //@ts-ignore
         sendMessage('JavascriptHook', 'start_ending_sequence', battle.winner == battle.creator ? 'right' : 'left')
         updateIsEnded(true)
       }
@@ -123,22 +117,19 @@ const BattlePage: NextPage = () => {
   const calculateWinner = async () => {
     await fetchBattle()
 
-    //@ts-ignore
     const diff = Math.abs(battle!.creatorAssetDelta - battle.acceptorAssetDelta)
     let newState = ''
 
     if (diff == 0) return
 
-    // TODO
-    //@ts-ignore
     if (battle.winner == battle.creator) {
-      if (diff > 5) {
+      if (diff > 2) {
         newState = 'left_winning_strongly'
       } else {
         newState = 'left_winning'
       }
     } else {
-      if (diff > 5) {
+      if (diff > 2) {
         newState = 'right_winning_strongly'
       } else {
         newState = 'right_winning'
@@ -157,11 +148,8 @@ const BattlePage: NextPage = () => {
     }
   }, 3000)
 
-  //@ts-ignore
   const computeIsEnded = (battle) => {
-    //@ts-ignore
     const startDate = Date.parse(battle.startTime)
-    //@ts-ignore
     const endDate = ((startDate / 1000) + battle.duration) * 1000
     return endDate - Date.now() <= 0
   }
@@ -169,7 +157,6 @@ const BattlePage: NextPage = () => {
   useInterval(() => {
     const calculateEnding = async () => {
       if (computeIsEnded(battle) && !isEnded) {
-        //@ts-ignore
         sendMessage('JavascriptHook', 'start_ending_sequence', battle.winner == battle.creator ? 'right' : 'left')
         updateIsEnded(true)
       }
@@ -186,13 +173,10 @@ const BattlePage: NextPage = () => {
           <div style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}>
             Loading...
           </div>
-          {/* @ts-ignore */}
           <div style={{ background: creatorFini ? creatorFini.background : "gray", flex: 1 }}/>
-          {/* @ts-ignore */}
           <div style={{ background: acceptorFini ? acceptorFini.background : "gray", flex: 1 }}/>
         </div>
         <Unity devicePixelRatio={1.5} unityProvider={unityProvider} style={{ visibility: isStarted || isEnded ? "visible" : "hidden", position: "absolute" }} />
-        {/* <Unity devicePixelRatio={1.5} unityProvider={unityProvider} style={{ position: "absolute" }} /> */}
       </div>
     );
 }
