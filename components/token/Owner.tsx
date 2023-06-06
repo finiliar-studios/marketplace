@@ -38,7 +38,7 @@ function LicensedDownloadComponent({ link, tokenId }: LicensedDownloadComponentP
           checked={checked}
           onChange={handleChange}
         />
-        <label className="text-primary-500 text-sm ml-1 items-center"> Click here to agree and certify you have read the license </label>
+        <label className="text-primary-500 text-sm ml-1 items-center"> Click here to agree and certify you have read the License </label>
       </div>
       <div className={`text-primary-500 text-sm inline-flex mt-1 items-center hover:opacity-75 'opacity-100' cursor-pointer`}>
         <a 
@@ -124,7 +124,7 @@ const Owner: FC<Props> = ({ details, bannedOnOpenSea, collection, threeDModel })
                 <Dialog.Content className="DialogContent">
                   <Dialog.Description>
                   Before downloading these 3D assets, please review the <a rel="noreferrer" target="_blank" href="https://nftstorage.link/ipfs/bafkreiddyrny25yijyqpayekam6z2soysblv7bpj3wawngjd4cftbfco7i">
-                    <span className="underline">Finiliar license</span> </a>
+                    <span className="underline">Finiliar License</span> </a>
                   </Dialog.Description>
                   <LicensedDownloadComponent link={threeDModel} tokenId={token?.tokenId} />
                 </Dialog.Content>
