@@ -394,7 +394,8 @@ export const getServerSideProps: GetServerSideProps<{
     background: metadata.background,
     latestDelta: metadata.latestDelta,
     latestPrice: metadata.latestPrice,
-    image: metadata.image
+    image: metadata.image,
+    threeDModel: metadata.threeDModel
   }
 
   const collectionId = data.tokens?.[0]?.token?.collection?.id

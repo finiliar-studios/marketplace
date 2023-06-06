@@ -123,7 +123,7 @@ const Owner: FC<Props> = ({ details, bannedOnOpenSea, collection, threeDModel })
                 <Dialog.Overlay className="DialogOverlay" />
                 <Dialog.Content className="DialogContent">
                   <Dialog.Description>
-                  Before downloading these 3D assets, please review the <a target="_blank" href="https://nftstorage.link/ipfs/bafkreiddyrny25yijyqpayekam6z2soysblv7bpj3wawngjd4cftbfco7i">
+                  Before downloading these 3D assets, please review the <a rel="noreferrer" target="_blank" href="https://nftstorage.link/ipfs/bafkreiddyrny25yijyqpayekam6z2soysblv7bpj3wawngjd4cftbfco7i">
                     <span className="underline">Finiliar license</span> </a>
                   </Dialog.Description>
                   <LicensedDownloadComponent link={threeDModel} tokenId={token?.tokenId} />
