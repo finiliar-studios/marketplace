@@ -47,7 +47,7 @@ function LicensedDownloadComponent({ link, tokenId }: LicensedDownloadComponentP
         className={`text-primary-500 text-sm inline-flex mt-2 items-center hover:opacity-75 ${!checked ? ' opacity-25' : 'opacity-100'}`}
       >
         <img src="/icons/FileSmile.svg" className="h-[16px] mr-[5px]" alt="File icon" />
-        <div className="inline-flex">Download 3d Model </div>
+        <div className="inline-flex">Download 3D Assets </div>
       </a>
       </div>
     </div>
@@ -116,15 +116,15 @@ const Owner: FC<Props> = ({ details, bannedOnOpenSea, collection, threeDModel })
             <Dialog.Trigger asChild>
                 <div className={`text-primary-500 text-sm inline-flex mt-2 items-center hover:opacity-75 'opacity-100' cursor-pointer`}>
                   <img src="/icons/FileSmile.svg" className="h-[16px] mr-[5px]" alt="File icon" />
-                  Download 3d Model
+                  Download 3D Assets
                 </div>
               </Dialog.Trigger>
               <Dialog.Portal>
                 <Dialog.Overlay className="DialogOverlay" />
                 <Dialog.Content className="DialogContent">
                   <Dialog.Description>
-                  Before downloading this 3d model, please review the <a target="_blank" href="https://nftstorage.link/ipfs/bafkreiddyrny25yijyqpayekam6z2soysblv7bpj3wawngjd4cftbfco7i">
-                    <span className="underline">Finliar 3d License</span> </a>
+                  Before downloading these 3D assets, please review the <a target="_blank" href="https://nftstorage.link/ipfs/bafkreiddyrny25yijyqpayekam6z2soysblv7bpj3wawngjd4cftbfco7i">
+                    <span className="underline">Finiliar license</span> </a>
                   </Dialog.Description>
                   <LicensedDownloadComponent link={threeDModel} tokenId={token?.tokenId} />
                 </Dialog.Content>
