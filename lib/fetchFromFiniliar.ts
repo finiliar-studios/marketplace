@@ -6,6 +6,7 @@ export interface FiniliarMetadata {
   image: string,
   latestPrice: number,
   latestDelta: number,
+  threeDModel: string,
   attributes?: {
     trait_type: string,
     value: string

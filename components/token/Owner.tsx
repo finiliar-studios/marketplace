@@ -1,26 +1,68 @@
 import EthAccount from 'components/EthAccount'
 import Link from 'next/link'
-import { FC } from 'react'
+import React, { FC, useState } from 'react'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import { FiAlertCircle } from 'react-icons/fi'
 import { useTokens } from '@reservoir0x/reservoir-kit-ui'
 import { Collection } from 'types/reservoir'
-import RarityTooltip from 'components/RarityTooltip'
-import { formatNumber } from 'lib/numbers'
 import { DownloadButton } from 'components/DownloadButton'
 import getAttributeFromTokenDetails from 'lib/getAttributeFromTokenDetails'
+import { Cross2Icon } from '@radix-ui/react-icons';
+import * as Dialog from '@radix-ui/react-dialog'
+
 
 type Props = {
   details: ReturnType<typeof useTokens>['data'][0]
   bannedOnOpenSea: boolean
   collection?: Collection
+  threeDModel: string
 }
 
-const Owner: FC<Props> = ({ details, bannedOnOpenSea, collection }) => {
+type LicensedDownloadComponentProps = {
+  link: string
+  tokenId?: string
+}
+
+function LicensedDownloadComponent({ link, tokenId }: LicensedDownloadComponentProps) {
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (event: { target: { checked: boolean | ((prevState: boolean) => boolean) } }) => {
+    setChecked(event.target.checked);
+  };
+
+  return (
+    <div>
+      <div className="flex items-center mt-1">
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={handleChange}
+        />
+        <label className="text-primary-500 text-sm ml-1 items-center"> Click here to agree and certify you have read the license </label>
+      </div>
+      <div className={`text-primary-500 text-sm inline-flex mt-1 items-center hover:opacity-75 'opacity-100' cursor-pointer`}>
+        <a 
+        href={link}
+        download={`${tokenId}.unitypackage`} 
+        className={`text-primary-500 text-sm inline-flex mt-2 items-center hover:opacity-75 ${!checked ? ' opacity-25' : 'opacity-100'}`}
+      >
+        <img src="/icons/FileSmile.svg" className="h-[16px] mr-[5px]" alt="File icon" />
+        <div className="inline-flex">Download 3d Model </div>
+      </a>
+      </div>
+    </div>
+  );
+}
+
+
+const Owner: FC<Props> = ({ details, bannedOnOpenSea, collection, threeDModel }) => {
   const token = details?.token
 
   const tokenFamily = token && getAttributeFromTokenDetails(token, 'Family')
   const idleLink = token && token?.image!.replace(token?.image!.split('/')[3], tokenFamily + '2')
+
+
+  console.log({ details })
 
   const owner =
     token?.kind === 'erc1155' && details?.market?.floorAsk?.maker
@@ -68,6 +110,26 @@ const Owner: FC<Props> = ({ details, bannedOnOpenSea, collection }) => {
           <DownloadButton gifLink={idleLink} filename={'fini ' + token?.tokenId! + ' idle.gif'}>
             <div className="inline-flex">Download idle gif</div>
           </DownloadButton>
+
+           
+           <Dialog.Root>
+            <Dialog.Trigger asChild>
+                <div className={`text-primary-500 text-sm inline-flex mt-2 items-center hover:opacity-75 'opacity-100' cursor-pointer`}>
+                  <img src="/icons/FileSmile.svg" className="h-[16px] mr-[5px]" alt="File icon" />
+                  Download 3d Model
+                </div>
+              </Dialog.Trigger>
+              <Dialog.Portal>
+                <Dialog.Overlay className="DialogOverlay" />
+                <Dialog.Content className="DialogContent">
+                  <Dialog.Description>
+                  Before downloading this 3d model, please review the <a target="_blank" href="https://nftstorage.link/ipfs/bafkreiddyrny25yijyqpayekam6z2soysblv7bpj3wawngjd4cftbfco7i">
+                    <span className="underline">Finliar 3d License</span> </a>
+                  </Dialog.Description>
+                  <LicensedDownloadComponent link={threeDModel} tokenId={token?.tokenId} />
+                </Dialog.Content>
+              </Dialog.Portal>
+            </Dialog.Root>
         </div>
       </article>
     </div>
