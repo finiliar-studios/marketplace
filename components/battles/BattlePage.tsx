@@ -21,11 +21,11 @@ const BattlePage: NextPage = () => {
 
   // SETUP AND START BATTLE ======================
   const { unityProvider, sendMessage, requestFullscreen, isLoaded, loadingProgression, addEventListener, removeEventListener } = useUnityContext({
-      loaderUrl: "battlegl/FinBattles_0.1a_WebGL.loader.js",
-      dataUrl: "battlegl/FinBattles_0.1a_WebGL.data",
-      frameworkUrl: "battlegl/FinBattles_0.1a_WebGL.framework.js",
-      codeUrl: "battlegl/FinBattles_0.1a_WebGL.wasm",
-      streamingAssetsUrl: "battlegl/StreamingAssets"
+      loaderUrl: "battlewebgl/FinBattles_0.1a_WebGL.loader.js",
+      dataUrl: "battlewebgl/FinBattles_0.1a_WebGL.data",
+      frameworkUrl: "battlewebgl/FinBattles_0.1a_WebGL.framework.js",
+      codeUrl: "battlewebgl/FinBattles_0.1a_WebGL.wasm",
+      streamingAssetsUrl: "battlewebgl/StreamingAssets"
   });
 
   // FETCH AND UPDATE BATTLE DATA ================
