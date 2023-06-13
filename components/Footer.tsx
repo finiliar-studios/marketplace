@@ -31,7 +31,7 @@ const Footer = () => {
               <FaTwitter className='h-[20px] w-[25px]' />
             </a>
           </Link>
-          <Link href='https://discord.gg/finiliar' className='ml-5' legacyBehavior={true}>
+          <Link href='https://discord.gg/finidotworld' className='ml-5' legacyBehavior={true}>
             <a className='' target="_blank" rel="noreferrer">
               <FaDiscord className='h-[19px] w-[25px]' />
             </a>

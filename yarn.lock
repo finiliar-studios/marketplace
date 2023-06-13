@@ -4283,6 +4283,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"deepmerge@npm:^4.0.0":
+  version: 4.3.1
+  resolution: "deepmerge@npm:4.3.1"
+  checksum: 2024c6a980a1b7128084170c4cf56b0fd58a63f2da1660dcfe977415f27b17dbe5888668b59d0b063753f3220719d5e400b7f113609489c90160bb9a5518d052
+  languageName: node
+  linkType: hard
+
 "deepmerge@npm:^4.2.2":
   version: 4.3.0
   resolution: "deepmerge@npm:4.3.0"
@@ -6792,6 +6799,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"load-script@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "load-script@npm:1.0.0"
+  checksum: 8458e3f07b4a86f8d9d66e47a987811491a5d013af23ba7b371c6d3c9dc899885b072ccf65abf7874c10cb197d4975eacd8a7a125bfb38dbbcb267539f5dc1e9
+  languageName: node
+  linkType: hard
+
 "locate-path@npm:^3.0.0":
   version: 3.0.0
   resolution: "locate-path@npm:3.0.0"
@@ -7000,6 +7014,13 @@ __metadata:
   version: 0.3.0
   resolution: "media-typer@npm:0.3.0"
   checksum: af1b38516c28ec95d6b0826f6c8f276c58aec391f76be42aa07646b4e39d317723e869700933ca6995b056db4b09a78c92d5440dc23657e6764be5d28874bba1
+  languageName: node
+  linkType: hard
+
+"memoize-one@npm:^5.1.1":
+  version: 5.2.1
+  resolution: "memoize-one@npm:5.2.1"
+  checksum: a3cba7b824ebcf24cdfcd234aa7f86f3ad6394b8d9be4c96ff756dafb8b51c7f71320785fbc2304f1af48a0467cbbd2a409efc9333025700ed523f254cb52e3d
   languageName: node
   linkType: hard
 
@@ -8584,6 +8605,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-fast-compare@npm:^3.0.1":
+  version: 3.2.2
+  resolution: "react-fast-compare@npm:3.2.2"
+  checksum: 2071415b4f76a3e6b55c84611c4d24dcb12ffc85811a2840b5a3f1ff2d1a99be1020d9437ee7c6e024c9f4cbb84ceb35e48cf84f28fcb00265ad2dfdd3947704
+  languageName: node
+  linkType: hard
+
 "react-flatpickr@npm:^3.10.13":
   version: 3.10.13
   resolution: "react-flatpickr@npm:3.10.13"
@@ -8730,6 +8758,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-player@npm:^2.12.0":
+  version: 2.12.0
+  resolution: "react-player@npm:2.12.0"
+  dependencies:
+    deepmerge: ^4.0.0
+    load-script: ^1.0.0
+    memoize-one: ^5.1.1
+    prop-types: ^15.7.2
+    react-fast-compare: ^3.0.1
+  peerDependencies:
+    react: ">=16.6.0"
+  checksum: 77d3e55ed67cd9c1e2300a990d8015d270072daad41f8a0750c32748f3fbfbc5bd2a2f06e78ac6828c2260b84537b9571d0abac31d3e888b74a3dccb59a56365
+  languageName: node
+  linkType: hard
+
 "react-remove-scroll-bar@npm:^2.3.3":
   version: 2.3.4
   resolution: "react-remove-scroll-bar@npm:2.3.4"
@@ -8810,6 +8853,15 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 7ee8ef3aab74c7ae1d70ff34a27643d11ba1a8d62d072c767827d9ff9a520905223e567002e0bf6c772929d8ea1c781a3ba0cc4a563e92b1e3dc2eaa817ecbe8
+  languageName: node
+  linkType: hard
+
+"react-unity-webgl@npm:^9.4.0":
+  version: 9.4.2
+  resolution: "react-unity-webgl@npm:9.4.2"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 39d0071ef008538adc4a5926e7c2a4568c199b302911a546cef27fe15affdc0895c7216b171ef53de8aa0af4d1a960e456ebae666287da0a234e3e11f43d5444
   languageName: node
   linkType: hard
 
@@ -9236,6 +9288,8 @@ __metadata:
     react-jazzicon: ^1.0.3
     react-markdown: ^8.0.3
     react-masonry-css: ^1.0.16
+    react-player: ^2.12.0
+    react-unity-webgl: ^9.4.0
     recoil: ^0.7.4
     swr: ^1.1.2
     tailwindcss: ^3.0.15
