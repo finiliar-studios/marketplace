@@ -21,7 +21,7 @@ const Pomp: FC = () => {
             <h1 className="text-white text-6xl p-6 font-bold max-w-[900px] m-auto">Digital friends for everything that matters.</h1>
             <div className="mt-6">
                 <div className="bg-[#E57FA4] p-2 px-4 rounded-full inline-block">
-                    <a href="https://app.fini.world" target="_blank" >
+                    <a href="https://app.fini.world" target="_blank" rel="noreferrer">
                         <div>Download the app</div>
                     </a>
                 </div>
@@ -44,7 +44,7 @@ const Pomp: FC = () => {
                 <div className="text-xl inline-block">
                     <span className="pr-2">to test this</span>
                     <img src="Group 61353.png" alt="Circle decoration" className="inline-block w-[100px] mr-4" />
-                    <span>you'll also need to download this app</span>
+                    <span>you&apos;ll also need to download this app</span>
                     <img src="Group 61354.png" alt="Circle decoration" className="inline-block w-[100px] ml-4" />
 
                 </div>
