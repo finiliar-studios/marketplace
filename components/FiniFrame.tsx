@@ -41,7 +41,8 @@ const GridItem: FC<Props> = ({ finiId, cancelClick, showData, showButtons, myTea
         latestDelta: res.latestDelta,
         image: res.image,
         background: res.background,
-        attributes: res.attributes
+        attributes: res.attributes,
+        threeDModel: res.threeDModel
       })
     }).catch((err) => {
       console.log(`Error fetching data for token id ${finiId}:`, err)

@@ -1,7 +1,7 @@
 import { FaTwitter, FaDiscord } from 'react-icons/fa'
 import Link from 'next/link'
 
-const FOOTER_ENABLED = process.env.NEXT_PUBLIC_FOOTER_ENABLED == 'true'
+const FOOTER_ENABLED = true
 const COLLECTION = process.env.NEXT_PUBLIC_COLLECTION
 
 const Footer = () => {
@@ -24,6 +24,11 @@ const Footer = () => {
             <a className="flex-none dark:text-white" target="_blank" rel="noopener noreferrer">
               {/* <img src='/icons/etherscan-logo-circle.svg' alt="Etherscan Icon" className="h-[22px]" /> */}
               [ Etherscan ]
+            </a>
+          </Link>
+          <Link href='https://nftstorage.link/ipfs/bafkreiddyrny25yijyqpayekam6z2soysblv7bpj3wawngjd4cftbfco7i' className='ml-5' legacyBehavior={true}>
+            <a className='' target="_blank" rel="noreferrer">
+              [ Finiliar License ]
             </a>
           </Link>
           <Link href='https://twitter.com/finiliar' legacyBehavior={true}>

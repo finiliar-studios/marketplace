@@ -151,6 +151,23 @@ const Index: NextPage<Props> = ({ collectionId, tokenDetails, freshMetadata }) =
       })
     }
   }, [])
+  useEffect(() => {
+    if (!tokenDetails?.tokenId) {
+      return
+    }
+
+    const fetchData = async () => {
+      const metadata = await fetchMetaFromFiniliar(tokenDetails.tokenId)
+      setFreshData({
+        background: metadata.background,
+        latestDelta: metadata.latestDelta,
+        latestPrice: metadata.latestPrice,
+        image: metadata.image,
+        threeDModel: metadata.threeDModel
+      })
+    }
+    fetchData()
+  }, [tokenDetails])
 
   useInterval(async () => {
     if (!tokenDetails?.image) return
@@ -166,7 +183,8 @@ const Index: NextPage<Props> = ({ collectionId, tokenDetails, freshMetadata }) =
         background: metadata.background,
         latestDelta: metadata.latestDelta,
         latestPrice: metadata.latestPrice,
-        image: metadata.image
+        image: metadata.image,
+        threeDModel: metadata.threeDModel
       })
     }
     
@@ -261,7 +279,7 @@ const Index: NextPage<Props> = ({ collectionId, tokenDetails, freshMetadata }) =
       </div>
       <div className="col-span-full content-start space-y-4 px-2 pt-4 md:col-span-4 lg:col-span-5 lg:col-start-2 lg:px-0 2xl:col-span-4 2xl:col-start-3 3xl:col-start-5 4xl:col-start-7">
         <div className="pb-4 md:pb-0">
-          <Owner details={token} bannedOnOpenSea={bannedOnOpenSea} />
+          { freshData && <Owner details={token} bannedOnOpenSea={bannedOnOpenSea} threeDModel={freshData.threeDModel} /> }
         </div>
         <div className="hidden space-y-4 md:block">
           {/* <CollectionInfo collection={collection} token={token.token} /> */}
@@ -376,7 +394,8 @@ export const getServerSideProps: GetServerSideProps<{
     background: metadata.background,
     latestDelta: metadata.latestDelta,
     latestPrice: metadata.latestPrice,
-    image: metadata.image
+    image: metadata.image,
+    threeDModel: metadata.threeDModel
   }
 
   const collectionId = data.tokens?.[0]?.token?.collection?.id
