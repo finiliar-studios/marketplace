@@ -176,7 +176,7 @@ const BattlePage: NextPage = () => {
           <div style={{ background: creatorFini ? creatorFini.background : "gray", flex: 1 }}/>
           <div style={{ background: acceptorFini ? acceptorFini.background : "gray", flex: 1 }}/>
         </div>
-        <Unity devicePixelRatio={1.5} unityProvider={unityProvider} style={{ visibility: isStarted || isEnded ? "visible" : "hidden", position: "absolute" }} />
+        <Unity devicePixelRatio={1.25} unityProvider={unityProvider} style={{ visibility: isStarted || isEnded ? "visible" : "hidden", position: "absolute" }} />
       </div>
     );
 }
