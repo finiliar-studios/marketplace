@@ -32,7 +32,7 @@ const Pomp: FC = () => {
                 </div>
             </div>
             <div className="mt-12">
-                <div className="inline-block text-4xl">
+                <div className="inline-block text-xl md:text-4xl">
                     <img src="Vector-1.png" alt="Circle decoration" className="inline-block w-[80px] h-[80px] mr-4" />
                     <span className="mr-4">be part of the test</span>
                     <img src="Vector-3.png" alt="Star decoration" className="inline-block w-[80px] h-[80px] mr-4" />
@@ -43,9 +43,13 @@ const Pomp: FC = () => {
             <div className="relative m-auto mt-12">
                 <div className="text-xl inline-block">
                     <span className="pr-2">to test this</span>
-                    <img src="Group 61353.png" alt="Circle decoration" className="inline-block w-[100px] mr-4" />
+                    <a href="https://app.fini.world" target="_blank" rel="noreferrer">
+                        <img src="Group 61353.png" alt="Circle decoration" className="inline-block w-[100px] mr-4" />
+                    </a>
                     <span>you&apos;ll also need to download this app</span>
-                    <img src="Group 61354.png" alt="Circle decoration" className="inline-block w-[100px] ml-4" />
+                    <a href="https://apps.apple.com/us/app/testflight/id899247664" target="_blank" rel="noreferrer">
+                        <img src="Group 61354.png" alt="Circle decoration" className="inline-block w-[100px] ml-4" />
+                    </a>
 
                 </div>
                 <div className="ml-[100px]">
