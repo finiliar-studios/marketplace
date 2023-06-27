@@ -1,7 +1,7 @@
 <linker>
-  <assembly fullname="Finiliar, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="Finiliar.FaceAnimator" preserve="all" />
-    <type fullname="Finiliar.FiniliarCharacterInfo" preserve="all" />
+  <assembly fullname="Fini.Battles, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Fini.Battles.FaceAnimator" preserve="all" />
+    <type fullname="Fini.Battles.FiniliarCharacterInfo" preserve="all" />
   </assembly>
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />

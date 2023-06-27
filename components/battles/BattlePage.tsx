@@ -58,7 +58,7 @@ const BattlePage: NextPage = () => {
   // HIDE BUTTONS AND UI ==========================
   useEffect(() => {
     if (isLoaded) {
-      sendMessage('JavascriptHook', 'hide_all')
+      // sendMessage('JavascriptHook', 'hide_all')
     }
   }, [isLoaded])
 
