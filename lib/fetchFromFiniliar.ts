@@ -14,6 +14,6 @@ export interface FiniliarMetadata {
 }
 
 export async function fetchMetaFromFiniliar(tokenId: string): Promise<FiniliarMetadata> {
-  const metadata = await (await fetch(FINILIAR_API + "/metadata/" + tokenId)).json()
+  const metadata = await (await fetch(FINILIAR_API + "/metadata/" + tokenId + "?key=TQVnOppFUycSU0R")).json()
   return metadata
 }
