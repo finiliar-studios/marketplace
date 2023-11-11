@@ -1,5 +1,5 @@
 
-const FINILIAR_API = process.env.NEXT_PUBLIC_FINILIAR_API || "https://api.finiliar.com"
+const FINILIAR_API = process.env.NEXT_PUBLIC_FINILIAR_API || "https://api-v2.finiliar.com"
 
 export interface FiniliarMetadata {
   background: string,
